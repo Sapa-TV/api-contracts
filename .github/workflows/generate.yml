@@ -1,0 +1,50 @@
+name: Generate api
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "openapi.json"
+      - "src/**"
+      - "index.ts"
+  workflow_dispatch:
+permissions:
+  contents: write
+
+jobs:
+  codegen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Generate API
+        run: |
+          npm ci
+          npm run generate
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          if [ -n "$(git status --porcelain ./generated)" ]; then
+            npm version patch --no-git-tag-version
+
+            git add ./generated package.json package-lock.json
+
+            git commit -m "chore: update generated api client"
+
+            NEW_VERSION=$(node -p "require('./package.json').version")
+            git tag "v$NEW_VERSION"
+            git push origin "v$NEW_VERSION"
+            git push
+          else
+            echo "No changes to commit"
+          fi

@@ -1,1 +1,256 @@
-{"openapi":"3.1.0","info":{"title":"api","description":"","license":{"name":""},"version":"0.1.0"},"paths":{"/api/health":{"get":{"tags":["Health"],"operationId":"health","responses":{"200":{"description":"Health check","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HealthResponse"}}}}}}},"/api/king":{"get":{"tags":["King"],"operationId":"get_king","responses":{"200":{"description":"Current king","content":{"application/json":{"schema":{"$ref":"#/components/schemas/KingResponse"}}}}}},"post":{"tags":["King"],"operationId":"post_king","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/KingRequest"}}},"required":true},"responses":{"200":{"description":"Update king","content":{"application/json":{"schema":{"$ref":"#/components/schemas/KingResponse"}}}}}}},"/api/last-day":{"get":{"tags":["Donaters"],"operationId":"get_last_day","responses":{"200":{"description":"Donaters for last day","content":{"application/json":{"schema":{"$ref":"#/components/schemas/DonatersResponse"}}}}}},"post":{"tags":["Donaters"],"operationId":"post_last_day","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/DonaterRequest"}}},"required":true},"responses":{"200":{"description":"Add last day donater","content":{"application/json":{"schema":{"$ref":"#/components/schemas/DonatersResponse"}}}}}}},"/api/month":{"get":{"tags":["Donaters"],"operationId":"get_month","responses":{"200":{"description":"Donaters for current month","content":{"application/json":{"schema":{"$ref":"#/components/schemas/DonatersResponse"}}}}}},"post":{"tags":["Donaters"],"operationId":"post_month","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/DonaterRequest"}}},"required":true},"responses":{"200":{"description":"Add month donater","content":{"application/json":{"schema":{"$ref":"#/components/schemas/DonatersResponse"}}}}}}},"/api/push/subscription":{"post":{"tags":["Push"],"operationId":"post_subscription","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/PushSubscriptionRequest"}}},"required":true},"responses":{"200":{"description":"Save push subscription","content":{"application/json":{"schema":{"$ref":"#/components/schemas/PushSubscriptionResponse"}}}}}},"delete":{"tags":["Push"],"operationId":"delete_subscription","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/PushSubscriptionRequest"}}},"required":true},"responses":{"200":{"description":"Delete push subscription","content":{"application/json":{"schema":{"$ref":"#/components/schemas/PushSubscriptionResponse"}}}}}}}},"components":{"schemas":{"DonaterRequest":{"type":"object","required":["name"],"properties":{"name":{"type":"string"}}},"DonatersResponse":{"type":"object","required":["donaters"],"properties":{"donaters":{"type":"array","items":{"type":"string"}}},"example":["Star","Echo"]},"HealthResponse":{"type":"object","required":["status"],"properties":{"status":{"type":"string"}}},"KingRequest":{"type":"object","required":["name"],"properties":{"name":{"type":"string"}}},"KingResponse":{"type":"object","required":["name"],"properties":{"name":{"type":"string"}},"example":{"name":"Star"}},"PushKeys":{"type":"object","required":["p256dh","auth"],"properties":{"auth":{"type":"string"},"p256dh":{"type":"string"}}},"PushSubscriptionRequest":{"type":"object","required":["endpoint","keys"],"properties":{"endpoint":{"type":"string"},"keys":{"$ref":"#/components/schemas/PushKeys"},"user_id":{"type":["string","null"],"example":null}}},"PushSubscriptionResponse":{"type":"object","required":["success"],"properties":{"success":{"type":"boolean"}}}}},"tags":[{"name":"Health","description":"Health check"},{"name":"King","description":"King operations"},{"name":"Donaters","description":"Donaters operations"},{"name":"Push","description":"Web Push notifications"}]}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "api",
+    "description": "",
+    "license": { "name": "" },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "tags": ["Health"],
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Health check",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/king": {
+      "get": {
+        "tags": ["King"],
+        "operationId": "get_king",
+        "responses": {
+          "200": {
+            "description": "Current king",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/KingResponse" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["King"],
+        "operationId": "post_king",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/KingRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Update king",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/KingResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/last-day": {
+      "get": {
+        "tags": ["Donaters"],
+        "operationId": "get_last_day",
+        "responses": {
+          "200": {
+            "description": "Donaters for last day",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DonatersResponse" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Donaters"],
+        "operationId": "post_last_day",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DonaterRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Add last day donater",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DonatersResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/month": {
+      "get": {
+        "tags": ["Donaters"],
+        "operationId": "get_month",
+        "responses": {
+          "200": {
+            "description": "Donaters for current month",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DonatersResponse" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Donaters"],
+        "operationId": "post_month",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DonaterRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Add month donater",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DonatersResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/push/subscription": {
+      "post": {
+        "tags": ["Push"],
+        "operationId": "post_subscription",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushSubscriptionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Save push subscription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PushSubscriptionResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Push"],
+        "operationId": "delete_subscription",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushSubscriptionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Delete push subscription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PushSubscriptionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DonaterRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": { "name": { "type": "string" } }
+      },
+      "DonatersResponse": {
+        "type": "object",
+        "required": ["donaters"],
+        "properties": {
+          "donaters": { "type": "array", "items": { "type": "string" } }
+        },
+        "example": ["Star", "Echo"]
+      },
+      "HealthResponse": {
+        "type": "object",
+        "required": ["status"],
+        "properties": { "status": { "type": "string" } }
+      },
+      "KingRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": { "name": { "type": "string" } }
+      },
+      "KingResponse": {
+        "type": "object",
+        "required": ["name"],
+        "properties": { "name": { "type": "string" } },
+        "example": { "name": "Star" }
+      },
+      "PushKeys": {
+        "type": "object",
+        "required": ["p256dh", "auth"],
+        "properties": {
+          "auth": { "type": "string" },
+          "p256dh": { "type": "string" }
+        }
+      },
+      "PushSubscriptionRequest": {
+        "type": "object",
+        "required": ["endpoint", "keys"],
+        "properties": {
+          "endpoint": { "type": "string" },
+          "keys": { "$ref": "#/components/schemas/PushKeys" },
+          "user_id": { "type": ["string", "null"], "example": null }
+        }
+      },
+      "PushSubscriptionResponse": {
+        "type": "object",
+        "required": ["success"],
+        "properties": { "success": { "type": "boolean" } }
+      }
+    }
+  },
+  "tags": [
+    { "name": "Health", "description": "Health check" },
+    { "name": "King", "description": "King operations" },
+    { "name": "Donaters", "description": "Donaters operations" },
+    { "name": "Push", "description": "Web Push notifications" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "api-contracts",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "generate": "swagger-typescript-api generate --path ./openapi.json --output ./generated -t ./src --modular -r",
+    "docs": "npx serve docs"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6",
+    "swagger-typescript-api": "^13.6.10"
+  },
+  "dependencies": {
+    "ts-results-es": "^7.0.0"
+  }
+}

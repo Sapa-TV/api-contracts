@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>API Documentation</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #f4f4f9;
+      }
+      .card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .links {
+        margin-top: 1.5rem;
+      }
+      a {
+        display: block;
+        margin: 10px 0;
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      a:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Наш API</h1>
+      <p>Выберите формат просмотра документации:</p>
+      <div class="links">
+        <a href="swagger.html">Swagger UI</a>
+        <a href="redoc.html">ReDoc</a>
+        <a href="openapi.json" download>Скачать спецификацию (.json)</a>
+      </div>
+    </div>
+  </body>
+</html>
