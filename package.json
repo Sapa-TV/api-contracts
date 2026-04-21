@@ -1,9 +1,9 @@
 {
   "name": "api-contracts",
   "version": "0.0.2",
-  "private": true,
   "scripts": {
     "generate": "swagger-typescript-api generate --path ./openapi.json --output ./generated -t ./src --modular -r",
+    "watch": "npx nodemon --watch openapi.json --exec \"npm run generate\"",
     "docs": "npx serve docs"
   },
   "devDependencies": {
