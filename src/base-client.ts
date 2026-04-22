@@ -1,4 +1,4 @@
-import { Err, Ok, Result } from "ts-results-es";
+import { ResultAsync, okAsync, errAsync } from "neverthrow";
 
 export interface ApiConfig {
     baseUrl: string;
@@ -12,22 +12,23 @@ export class HttpClient<SecurityDataType = unknown> {
         this.baseUrl = config.baseUrl;
     }
 
-    protected async request<T, E>({ path, method, body, query }: any): Promise<Result<T, E>> {
+    protected async request<T, E>(params: { path: string; method: string; body?: unknown; query?: Record<string, string> }): Promise<ResultAsync<T, E>> {
+        const { path, method, body, query } = params;
         const url = new URL(path, this.baseUrl);
         if (query) url.search = new URLSearchParams(query).toString();
 
-        try {
-            const response = await fetch(url.toString(), {
-                method,
-                headers: { "Content-Type": "application/json" },
-                body: body ? JSON.stringify(body) : undefined,
-            });
+        const response = await fetch(url.toString(), {
+            method,
+            headers: { "Content-Type": "application/json" },
+            body: body ? JSON.stringify(body) : undefined,
+        });
 
-            const data = response.status === 204 ? null : await response.json();
+        const data = response.status === 204 ? null : await response.json();
 
-            return response.ok ? new Ok(data) : new Err(data);
-        } catch (e: any) {
-            return new Err({ message: e.message } as any);
+        if (!response.ok) {
+            return errAsync(data as E);
         }
+
+        return okAsync(data as T);
     }
 }

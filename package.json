@@ -1,9 +1,10 @@
 {
   "name": "api-contracts",
   "version": "0.0.2",
+  "main": "index.ts",
   "scripts": {
     "generate": "swagger-typescript-api generate --path ./openapi.json --output ./generated -t ./src --modular -r",
-    "watch": "npx nodemon --watch openapi.json --exec \"npm run generate\"",
+    "watch": "nodemon --watch openapi.json --exec \"npm run generate\"",
     "docs": "npx serve docs"
   },
   "devDependencies": {
@@ -11,6 +12,6 @@
     "swagger-typescript-api": "^13.6.10"
   },
   "dependencies": {
-    "ts-results-es": "^7.0.0"
+    "neverthrow": "^8.2.0"
   }
 }

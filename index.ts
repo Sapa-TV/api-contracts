@@ -1,5 +1,3 @@
-import { Api } from "./generated/Api";
+export { Api } from "./generated/Api";
+export * from "./generated/data-contracts";
 
-const baseUrl = "http://localhost:8080";
-
-export const api = new Api({ baseUrl });

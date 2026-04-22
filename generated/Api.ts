@@ -18,6 +18,9 @@ import {
   KingResponse,
   PushSubscriptionRequest,
   PushSubscriptionResponse,
+  PushTestRequest,
+  PushTestResponse,
+  VapidPublicKeyResponse,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -172,6 +175,38 @@ export class Api<
       method: "DELETE",
       body: data,
       type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Push
+   * @name TestPushAll
+   * @request POST:/api/push/test-all
+   * @response `200` `PushTestResponse` Send test push to all subscriptions
+   */
+  testPushAll = (data: PushTestRequest, params: RequestParams = {}) =>
+    this.request<PushTestResponse, any>({
+      path: `/api/push/test-all`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Push
+   * @name GetVapidPublicKey
+   * @request GET:/api/push/vapid-public-key
+   * @response `200` `VapidPublicKeyResponse` VAPID public key for push notifications
+   */
+  getVapidPublicKey = (params: RequestParams = {}) =>
+    this.request<VapidPublicKeyResponse, any>({
+      path: `/api/push/vapid-public-key`,
+      method: "GET",
       format: "json",
       ...params,
     });
