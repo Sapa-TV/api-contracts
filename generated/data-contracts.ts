@@ -21,6 +21,7 @@ export interface DonatersResponse {
 
 export interface HealthResponse {
   status: string;
+  version: string;
 }
 
 export interface KingRequest {
@@ -46,4 +47,21 @@ export interface PushSubscriptionRequest {
 
 export interface PushSubscriptionResponse {
   success: boolean;
+}
+
+export interface PushTestRequest {
+  body: string;
+  title: string;
+}
+
+export interface PushTestResponse {
+  /**
+   * @format int32
+   * @min 0
+   */
+  sent: number;
+}
+
+export interface VapidPublicKeyResponse {
+  key: string;
 }
