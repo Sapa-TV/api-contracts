@@ -173,6 +173,46 @@
         }
       }
     },
+    "/api/oauth/callback": {
+      "get": {
+        "tags": [
+          "OAuth"
+        ],
+        "operationId": "oauth_callback",
+        "responses": {
+          "200": {
+            "description": "OAuth callback result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OAuthCallbackResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oauth/url": {
+      "get": {
+        "tags": [
+          "OAuth"
+        ],
+        "operationId": "get_oauth_url",
+        "responses": {
+          "200": {
+            "description": "Twitch OAuth authorization URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OAuthUrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/push/subscription": {
       "post": {
         "tags": [
@@ -277,6 +317,9 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "VAPID_PUBLIC_KEY not configured"
           }
         }
       }
@@ -351,6 +394,49 @@
         },
         "example": {
           "name": "Star"
+        }
+      },
+      "OAuthCallbackParams": {
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "state": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "OAuthCallbackResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "OAuthUrlResponse": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          }
         }
       },
       "PushKeys": {
@@ -458,6 +544,10 @@
     {
       "name": "Push",
       "description": "Web Push notifications"
+    },
+    {
+      "name": "OAuth",
+      "description": "Twitch OAuth authorization"
     }
   ]
 }
