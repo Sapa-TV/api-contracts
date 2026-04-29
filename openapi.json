@@ -360,9 +360,13 @@
         "type": "object",
         "required": [
           "status",
-          "version"
+          "version",
+          "commit"
         ],
         "properties": {
+          "commit": {
+            "type": "string"
+          },
           "status": {
             "type": "string"
           },
