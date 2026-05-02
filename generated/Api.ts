@@ -16,6 +16,8 @@ import {
   HealthResponse,
   KingRequest,
   KingResponse,
+  OAuthCallbackResponse,
+  OAuthUrlResponse,
   PushSubscriptionRequest,
   PushSubscriptionResponse,
   PushTestRequest,
@@ -141,6 +143,36 @@ export class Api<
   /**
    * No description
    *
+   * @tags OAuth
+   * @name OauthCallback
+   * @request GET:/api/oauth/callback
+   * @response `200` `OAuthCallbackResponse` OAuth callback result
+   */
+  oauthCallback = (params: RequestParams = {}) =>
+    this.request<OAuthCallbackResponse, any>({
+      path: `/api/oauth/callback`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags OAuth
+   * @name GetOauthUrl
+   * @request GET:/api/oauth/url
+   * @response `200` `OAuthUrlResponse` Twitch OAuth authorization URL
+   */
+  getOauthUrl = (params: RequestParams = {}) =>
+    this.request<OAuthUrlResponse, any>({
+      path: `/api/oauth/url`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
    * @tags Push
    * @name PostSubscription
    * @request POST:/api/push/subscription
@@ -202,9 +234,10 @@ export class Api<
    * @name GetVapidPublicKey
    * @request GET:/api/push/vapid-public-key
    * @response `200` `VapidPublicKeyResponse` VAPID public key for push notifications
+   * @response `500` `void` VAPID_PUBLIC_KEY not configured
    */
   getVapidPublicKey = (params: RequestParams = {}) =>
-    this.request<VapidPublicKeyResponse, any>({
+    this.request<VapidPublicKeyResponse, void>({
       path: `/api/push/vapid-public-key`,
       method: "GET",
       format: "json",

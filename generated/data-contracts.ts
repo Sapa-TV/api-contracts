@@ -20,6 +20,7 @@ export interface DonatersResponse {
 }
 
 export interface HealthResponse {
+  commit: string;
   status: string;
   version: string;
 }
@@ -31,6 +32,20 @@ export interface KingRequest {
 /** @example {"name":"Star"} */
 export interface KingResponse {
   name: string;
+}
+
+export interface OAuthCallbackParams {
+  code: string;
+  state?: string | null;
+}
+
+export interface OAuthCallbackResponse {
+  message: string;
+  success: boolean;
+}
+
+export interface OAuthUrlResponse {
+  url: string;
 }
 
 export interface PushKeys {
