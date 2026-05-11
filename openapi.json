@@ -14,7 +14,7 @@
         "tags": [
           "Health"
         ],
-        "operationId": "health",
+        "operationId": "get_health",
         "responses": {
           "200": {
             "description": "Health check",
@@ -22,150 +22,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HealthResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/king": {
-      "get": {
-        "tags": [
-          "King"
-        ],
-        "operationId": "get_king",
-        "responses": {
-          "200": {
-            "description": "Current king",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KingResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "King"
-        ],
-        "operationId": "post_king",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/KingRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Update king",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KingResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/last-day": {
-      "get": {
-        "tags": [
-          "Donaters"
-        ],
-        "operationId": "get_last_day",
-        "responses": {
-          "200": {
-            "description": "Donaters for last day",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DonatersResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Donaters"
-        ],
-        "operationId": "post_last_day",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DonaterRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Add last day donater",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DonatersResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/month": {
-      "get": {
-        "tags": [
-          "Donaters"
-        ],
-        "operationId": "get_month",
-        "responses": {
-          "200": {
-            "description": "Donaters for current month",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DonatersResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Donaters"
-        ],
-        "operationId": "post_month",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DonaterRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Add month donater",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DonatersResponse"
                 }
               }
             }
@@ -323,39 +179,154 @@
           }
         }
       }
+    },
+    "/api/supporters/day": {
+      "get": {
+        "tags": [
+          "Supporters"
+        ],
+        "operationId": "get_day_supporters",
+        "responses": {
+          "200": {
+            "description": "Supporters for last day",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportersResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Supporters"
+        ],
+        "operationId": "post_day_supporter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SupporterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Add last day supporter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/supporters/king": {
+      "get": {
+        "tags": [
+          "Supporters"
+        ],
+        "operationId": "get_king_supporter",
+        "responses": {
+          "200": {
+            "description": "Current king supporter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupporterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Supporters"
+        ],
+        "operationId": "post_king_supporter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SupporterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Update king supporter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupporterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/supporters/month": {
+      "get": {
+        "tags": [
+          "Supporters"
+        ],
+        "operationId": "get_month_supporters",
+        "responses": {
+          "200": {
+            "description": "Supporters for current month",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportersResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Supporters"
+        ],
+        "operationId": "post_month_supporter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SupporterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Add month supporter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "DonaterRequest": {
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "DonatersResponse": {
-        "type": "object",
-        "required": [
-          "donaters"
-        ],
-        "properties": {
-          "donaters": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "example": [
-          "Star",
-          "Echo"
-        ]
-      },
       "HealthResponse": {
         "type": "object",
         "required": [
@@ -373,31 +344,6 @@
           "version": {
             "type": "string"
           }
-        }
-      },
-      "KingRequest": {
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "KingResponse": {
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "name": "Star"
         }
       },
       "OAuthCallbackParams": {
@@ -519,6 +465,49 @@
           }
         }
       },
+      "SupporterRequest": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "SupporterResponse": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Star"
+        }
+      },
+      "SupportersResponse": {
+        "type": "object",
+        "required": [
+          "supporters"
+        ],
+        "properties": {
+          "supporters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": [
+          "Star",
+          "Echo"
+        ]
+      },
       "VapidPublicKeyResponse": {
         "type": "object",
         "required": [
@@ -538,12 +527,8 @@
       "description": "Health check"
     },
     {
-      "name": "King",
-      "description": "King operations"
-    },
-    {
-      "name": "Donaters",
-      "description": "Donaters operations"
+      "name": "Supporters",
+      "description": "Supporters operations"
     },
     {
       "name": "Push",
@@ -551,7 +536,7 @@
     },
     {
       "name": "OAuth",
-      "description": "Twitch OAuth authorization"
+      "description": "Provider OAuth authorization"
     }
   ]
 }
