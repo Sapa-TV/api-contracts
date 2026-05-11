@@ -10,28 +10,10 @@
  * ---------------------------------------------------------------
  */
 
-export interface DonaterRequest {
-  name: string;
-}
-
-/** @example ["Star","Echo"] */
-export interface DonatersResponse {
-  donaters: string[];
-}
-
 export interface HealthResponse {
   commit: string;
   status: string;
   version: string;
-}
-
-export interface KingRequest {
-  name: string;
-}
-
-/** @example {"name":"Star"} */
-export interface KingResponse {
-  name: string;
 }
 
 export interface OAuthCallbackParams {
@@ -75,6 +57,20 @@ export interface PushTestResponse {
    * @min 0
    */
   sent: number;
+}
+
+export interface SupporterRequest {
+  name: string;
+}
+
+/** @example {"name":"Star"} */
+export interface SupporterResponse {
+  name: string;
+}
+
+/** @example ["Star","Echo"] */
+export interface SupportersResponse {
+  supporters: string[];
 }
 
 export interface VapidPublicKeyResponse {

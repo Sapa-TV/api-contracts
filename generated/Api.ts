@@ -11,17 +11,16 @@
  */
 
 import {
-  DonaterRequest,
-  DonatersResponse,
   HealthResponse,
-  KingRequest,
-  KingResponse,
   OAuthCallbackResponse,
   OAuthUrlResponse,
   PushSubscriptionRequest,
   PushSubscriptionResponse,
   PushTestRequest,
   PushTestResponse,
+  SupporterRequest,
+  SupporterResponse,
+  SupportersResponse,
   VapidPublicKeyResponse,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -33,110 +32,14 @@ export class Api<
    * No description
    *
    * @tags Health
-   * @name Health
+   * @name GetHealth
    * @request GET:/api/health
    * @response `200` `HealthResponse` Health check
    */
-  health = (params: RequestParams = {}) =>
+  getHealth = (params: RequestParams = {}) =>
     this.request<HealthResponse, any>({
       path: `/api/health`,
       method: "GET",
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags King
-   * @name GetKing
-   * @request GET:/api/king
-   * @response `200` `KingResponse` Current king
-   */
-  getKing = (params: RequestParams = {}) =>
-    this.request<KingResponse, any>({
-      path: `/api/king`,
-      method: "GET",
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags King
-   * @name PostKing
-   * @request POST:/api/king
-   * @response `200` `KingResponse` Update king
-   */
-  postKing = (data: KingRequest, params: RequestParams = {}) =>
-    this.request<KingResponse, any>({
-      path: `/api/king`,
-      method: "POST",
-      body: data,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Donaters
-   * @name GetLastDay
-   * @request GET:/api/last-day
-   * @response `200` `DonatersResponse` Donaters for last day
-   */
-  getLastDay = (params: RequestParams = {}) =>
-    this.request<DonatersResponse, any>({
-      path: `/api/last-day`,
-      method: "GET",
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Donaters
-   * @name PostLastDay
-   * @request POST:/api/last-day
-   * @response `200` `DonatersResponse` Add last day donater
-   */
-  postLastDay = (data: DonaterRequest, params: RequestParams = {}) =>
-    this.request<DonatersResponse, any>({
-      path: `/api/last-day`,
-      method: "POST",
-      body: data,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Donaters
-   * @name GetMonth
-   * @request GET:/api/month
-   * @response `200` `DonatersResponse` Donaters for current month
-   */
-  getMonth = (params: RequestParams = {}) =>
-    this.request<DonatersResponse, any>({
-      path: `/api/month`,
-      method: "GET",
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Donaters
-   * @name PostMonth
-   * @request POST:/api/month
-   * @response `200` `DonatersResponse` Add month donater
-   */
-  postMonth = (data: DonaterRequest, params: RequestParams = {}) =>
-    this.request<DonatersResponse, any>({
-      path: `/api/month`,
-      method: "POST",
-      body: data,
-      type: ContentType.Json,
       format: "json",
       ...params,
     });
@@ -240,6 +143,102 @@ export class Api<
     this.request<VapidPublicKeyResponse, void>({
       path: `/api/push/vapid-public-key`,
       method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Supporters
+   * @name GetDaySupporters
+   * @request GET:/api/supporters/day
+   * @response `200` `SupportersResponse` Supporters for last day
+   */
+  getDaySupporters = (params: RequestParams = {}) =>
+    this.request<SupportersResponse, any>({
+      path: `/api/supporters/day`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Supporters
+   * @name PostDaySupporter
+   * @request POST:/api/supporters/day
+   * @response `200` `SupportersResponse` Add last day supporter
+   */
+  postDaySupporter = (data: SupporterRequest, params: RequestParams = {}) =>
+    this.request<SupportersResponse, any>({
+      path: `/api/supporters/day`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Supporters
+   * @name GetKingSupporter
+   * @request GET:/api/supporters/king
+   * @response `200` `SupporterResponse` Current king supporter
+   */
+  getKingSupporter = (params: RequestParams = {}) =>
+    this.request<SupporterResponse, any>({
+      path: `/api/supporters/king`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Supporters
+   * @name PostKingSupporter
+   * @request POST:/api/supporters/king
+   * @response `200` `SupporterResponse` Update king supporter
+   */
+  postKingSupporter = (data: SupporterRequest, params: RequestParams = {}) =>
+    this.request<SupporterResponse, any>({
+      path: `/api/supporters/king`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Supporters
+   * @name GetMonthSupporters
+   * @request GET:/api/supporters/month
+   * @response `200` `SupportersResponse` Supporters for current month
+   */
+  getMonthSupporters = (params: RequestParams = {}) =>
+    this.request<SupportersResponse, any>({
+      path: `/api/supporters/month`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Supporters
+   * @name PostMonthSupporter
+   * @request POST:/api/supporters/month
+   * @response `200` `SupportersResponse` Add month supporter
+   */
+  postMonthSupporter = (data: SupporterRequest, params: RequestParams = {}) =>
+    this.request<SupportersResponse, any>({
+      path: `/api/supporters/month`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });
