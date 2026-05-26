@@ -35,6 +35,27 @@
           "OAuth"
         ],
         "operationId": "oauth_callback",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OAuth callback result",
@@ -343,23 +364,6 @@
           },
           "version": {
             "type": "string"
-          }
-        }
-      },
-      "OAuthCallbackParams": {
-        "type": "object",
-        "required": [
-          "code"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "state": {
-            "type": [
-              "string",
-              "null"
-            ]
           }
         }
       },
