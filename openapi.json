@@ -201,6 +201,145 @@
         }
       }
     },
+    "/api/roulette": {
+      "get": {
+        "tags": [
+          "Roulette"
+        ],
+        "operationId": "get_all_cards",
+        "responses": {
+          "200": {
+            "description": "List of cards"
+          }
+        }
+      }
+    },
+    "/api/roulette/card": {
+      "post": {
+        "tags": [
+          "Roulette"
+        ],
+        "operationId": "create_card",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouletteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Card created"
+          }
+        }
+      }
+    },
+    "/api/roulette/card/{id}": {
+      "get": {
+        "tags": [
+          "Roulette"
+        ],
+        "operationId": "get_card",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Card"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Roulette"
+        ],
+        "operationId": "update_card",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouletteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Card updated"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Roulette"
+        ],
+        "operationId": "delete_card",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/roulette/pick": {
+      "post": {
+        "tags": [
+          "Roulette"
+        ],
+        "operationId": "pick_random_card",
+        "responses": {
+          "200": {
+            "description": "Picked card"
+          },
+          "404": {
+            "description": "Roulette is empty"
+          }
+        }
+      }
+    },
     "/api/supporters/day": {
       "get": {
         "tags": [
@@ -469,6 +608,35 @@
           }
         }
       },
+      "RouletteRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "card_type",
+          "weight"
+        ],
+        "properties": {
+          "card_type": {
+            "type": "integer",
+            "format": "int32",
+            "example": 3
+          },
+          "description": {
+            "type": "string",
+            "example": "Rare card"
+          },
+          "name": {
+            "type": "string",
+            "example": "Golden card"
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          }
+        }
+      },
       "SupporterRequest": {
         "type": "object",
         "required": [
@@ -541,6 +709,10 @@
     {
       "name": "OAuth",
       "description": "Provider OAuth authorization"
+    },
+    {
+      "name": "Roulette",
+      "description": "Random card selection with weights"
     }
   ]
 }
