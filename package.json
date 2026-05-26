@@ -1,6 +1,6 @@
 {
   "name": "api-contracts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.ts",
   "scripts": {
     "generate": "swagger-typescript-api generate --path ./openapi.json --output ./generated -t ./src --modular -r",

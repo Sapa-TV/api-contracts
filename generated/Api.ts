@@ -51,7 +51,11 @@ export class Api<
    * @request GET:/api/oauth/callback
    * @response `200` `OAuthCallbackResponse` OAuth callback result
    */
-  oauthCallback = (params: RequestParams = {}) =>
+  oauthCallback = (
+    code: string,
+    state: string | null,
+    params: RequestParams = {},
+  ) =>
     this.request<OAuthCallbackResponse, any>({
       path: `/api/oauth/callback`,
       method: "GET",

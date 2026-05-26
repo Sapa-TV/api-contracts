@@ -16,11 +16,6 @@ export interface HealthResponse {
   version: string;
 }
 
-export interface OAuthCallbackParams {
-  code: string;
-  state?: string | null;
-}
-
 export interface OAuthCallbackResponse {
   message: string;
   success: boolean;
