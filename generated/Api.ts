@@ -18,6 +18,7 @@ import {
   PushSubscriptionResponse,
   PushTestRequest,
   PushTestResponse,
+  RouletteRequest,
   SupporterRequest,
   SupporterResponse,
   SupportersResponse,
@@ -148,6 +149,102 @@ export class Api<
       path: `/api/push/vapid-public-key`,
       method: "GET",
       format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Roulette
+   * @name GetAllCards
+   * @request GET:/api/roulette
+   * @response `200` `void` List of cards
+   */
+  getAllCards = (params: RequestParams = {}) =>
+    this.request<void, any>({
+      path: `/api/roulette`,
+      method: "GET",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Roulette
+   * @name CreateCard
+   * @request POST:/api/roulette/card
+   * @response `201` `void` Card created
+   */
+  createCard = (data: RouletteRequest, params: RequestParams = {}) =>
+    this.request<void, any>({
+      path: `/api/roulette/card`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Roulette
+   * @name GetCard
+   * @request GET:/api/roulette/card/{id}
+   * @response `200` `void` Card
+   * @response `404` `void` Not found
+   */
+  getCard = (id: number, params: RequestParams = {}) =>
+    this.request<void, void>({
+      path: `/api/roulette/card/${id}`,
+      method: "GET",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Roulette
+   * @name UpdateCard
+   * @request PUT:/api/roulette/card/{id}
+   * @response `200` `void` Card updated
+   * @response `404` `void` Not found
+   */
+  updateCard = (
+    id: number,
+    data: RouletteRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, void>({
+      path: `/api/roulette/card/${id}`,
+      method: "PUT",
+      body: data,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Roulette
+   * @name DeleteCard
+   * @request DELETE:/api/roulette/card/{id}
+   * @response `204` `void` Deleted
+   * @response `404` `void` Not found
+   */
+  deleteCard = (id: number, params: RequestParams = {}) =>
+    this.request<void, void>({
+      path: `/api/roulette/card/${id}`,
+      method: "DELETE",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Roulette
+   * @name PickRandomCard
+   * @request POST:/api/roulette/pick
+   * @response `200` `void` Picked card
+   * @response `404` `void` Roulette is empty
+   */
+  pickRandomCard = (params: RequestParams = {}) =>
+    this.request<void, void>({
+      path: `/api/roulette/pick`,
+      method: "POST",
       ...params,
     });
   /**

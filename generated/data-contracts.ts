@@ -54,6 +54,23 @@ export interface PushTestResponse {
   sent: number;
 }
 
+export interface RouletteRequest {
+  /**
+   * @format int32
+   * @example 3
+   */
+  card_type: number;
+  /** @example "Rare card" */
+  description: string;
+  /** @example "Golden card" */
+  name: string;
+  /**
+   * @format int32
+   * @example 10
+   */
+  weight: number;
+}
+
 export interface SupporterRequest {
   name: string;
 }
